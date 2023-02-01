@@ -6,12 +6,13 @@ export const ContactContext = createContext({
     contact: {},
     setContact: () => { },
     contacts: [],
+    setContacts: () => { },
     filteredContacts: [],
+    setFilteredContacts: () => { },
     contactQuery: {},
     groups: [],
     onContactChange: () => { },
     deleteContact: () => { },
-    updateContact: () => { },
     createContact: () => { },
     contactSearch: () => { }
 });

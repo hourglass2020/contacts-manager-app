@@ -8,7 +8,7 @@ import { ContactContext } from "../../context/contactContext";
 
 const Contacts = () => {
 
-  const { contacts, loading, deleteContact: confirmDelete } = useContext(ContactContext);
+  const { loading, filteredContacts, deleteContact: confirmDelete } = useContext(ContactContext);
 
   return (
     <>
@@ -35,8 +35,8 @@ const Contacts = () => {
       ) : (
         <section className="container">
           <div className="row">
-            {contacts.length > 0 ? (
-              contacts.map((c) => (
+            {filteredContacts.length > 0 ? (
+              filteredContacts.map((c) => (
                 <Contact
                   key={c.id}
                   confirmDelete={() => confirmDelete(c.id, c.fullname)}
