@@ -1,15 +1,20 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { Spinner } from "../";
 import { COMMENT, GREEN, PURPLE } from "../../helpers/colors";
+import { ContactContext } from './../../context/contactContext';
 
-const AddContact = ({
-  loading,
-  contact,
-  setContactInfo,
-  groups,
-  createContactForm,
-}) => {
+const AddContact = () => {
+
+  const {
+    loading,
+    contact,
+    onContactChange: setContactInfo,
+    groups,
+    createContact: createContactForm,
+  } = useContext(ContactContext);
+
   return (
     <>
       {loading ? (

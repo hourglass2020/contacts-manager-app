@@ -1,10 +1,15 @@
+import { useContext } from 'react';
 import { Link } from "react-router-dom";
 
 import Contact from "./Contact";
 import Spinner from "../Spinner";
 import { CURRENTLINE, ORANGE, PINK } from "../../helpers/colors";
+import { ContactContext } from "../../context/contactContext";
 
-const Contacts = ({ contacts, loading, confirmDelete }) => {
+const Contacts = () => {
+
+  const { contacts, loading, deleteContact: confirmDelete } = useContext(ContactContext);
+
   return (
     <>
       <section className="container">
