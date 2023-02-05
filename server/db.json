@@ -19,21 +19,13 @@
       "id": 4
     },
     {
-      "fullname": "پوریا اقدم پور",
-      "photo": "https://www.flaticon.com/free-icon/user_219986",
-      "mobile": "09351592329",
-      "email": "pouria.fm15@gmail.com",
-      "group": "1",
-      "id": 5
-    },
-    {
-      "fullname": "پوریا اقدم پور",
+      "fullname": "pouria",
       "photo": "https://toplearn.com/img/user/teachers/268_2b05b90b-7a78-4e35-058f-39e6b8cf2ac1_%D8%AD%D8%B3%D9%86%20_%D8%AE%D8%B3%D8%B1%D9%88%D8%AC%D8%B1%D8%AF%DB%8C.jpeg",
-      "mobile": "9352177192",
-      "email": "pouria.aghdampour@gmail.com",
-      "job": "developer",
+      "mobile": 9351592329,
+      "email": "pouria.fm16@gmail.com",
+      "job": "biomedical engineer",
       "group": "2",
-      "id": 6
+      "id": 7
     }
   ],
   "groups": [

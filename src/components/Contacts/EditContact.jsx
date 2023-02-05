@@ -8,7 +8,8 @@ import { Spinner } from "../";
 import { COMMENT, ORANGE, PURPLE } from "../../helpers/colors";
 import { ContactContext } from "./../../context/contactContext";
 import { contactSchema } from "../../validations/contactValidation";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const EditContact = () => {
   const { contactId } = useParams();
@@ -48,7 +49,7 @@ const EditContact = () => {
       const { data, status } = await updateContact(values, contactId);
 
       if (status === 200) {
-        toast.info("مخاطب با موفقیت ویرایش شد.")
+        toast.success("مخاطب با موفقیت ویرایش شد.")
 
         setContacts(draft => {
           const contactIndex = draft.findIndex(c => c.id === parseInt(contactId));
