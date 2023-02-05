@@ -38,7 +38,7 @@ const App = () => {
   const [filteredContacts, setFilteredContacts] = useState([]);
   const [groups, setGroups] = useState([]);
   const [contact, setContact] = useState({});
-  const [errors, setErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
 
   const navigate = useNavigate();
 
@@ -64,14 +64,15 @@ const App = () => {
     fetchData();
   }, []);
 
-  const createContactForm = async (event) => {
-    event.preventDefault();
+  // const createContactForm = async (event) => {
+  // event.preventDefault();
+  const createContactForm = async (values) => {
     try {
       setLoading(prevLoading => !prevLoading);
 
-      await contactSchema.validate(contact, { abortEarly: false });
+      // await contactSchema.validate(contact, { abortEarly: false });
 
-      const { status, data } = await createContact(contact);
+      const { status, data } = await createContact(values);
 
       if (status === 201) {
         const allContacts = [...contacts, data];
@@ -79,14 +80,14 @@ const App = () => {
         setFilteredContacts(allContacts);
         setContacts(allContacts);
 
-        setContact({});
-        setErrors([]);
+        // setContact({});
+        // setErrors([]);
         setLoading(prevLoading => !prevLoading);
         navigate("/contacts");
       }
     } catch (err) {
       console.log(err.message);
-      setErrors(err.inner);
+      // setErrors(err.inner);
       setLoading(prev => !prev);
     }
   };
@@ -194,7 +195,7 @@ const App = () => {
         filteredContacts,
         setFilteredContacts,
         groups,
-        errors,
+        // errors,
         onContactChange,
         deleteContact: confirmDelete,
         createContact: createContactForm,
