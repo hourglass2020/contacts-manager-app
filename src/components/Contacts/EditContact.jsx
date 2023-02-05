@@ -1,4 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { useImmer } from "use-immer";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Form, Field, ErrorMessage, Formik } from 'formik'
 
@@ -7,6 +8,7 @@ import { Spinner } from "../";
 import { COMMENT, ORANGE, PURPLE } from "../../helpers/colors";
 import { ContactContext } from "./../../context/contactContext";
 import { contactSchema } from "../../validations/contactValidation";
+import { toast } from "react-toastify";
 
 const EditContact = () => {
   const { contactId } = useParams();
@@ -21,7 +23,7 @@ const EditContact = () => {
     groups,
   } = useContext(ContactContext);
 
-  const [contact, setContact] = useState({});
+  const [contact, setContact] = useImmer({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,15 +48,17 @@ const EditContact = () => {
       const { data, status } = await updateContact(values, contactId);
 
       if (status === 200) {
-        const allContacts = [...contacts];
-        const contactIndex = allContacts.findIndex(
-          (element) => element.id === parseInt(contactId)
-        );
+        toast.info("مخاطب با موفقیت ویرایش شد.")
 
-        allContacts[contactIndex] = { ...data };
+        setContacts(draft => {
+          const contactIndex = draft.findIndex(c => c.id === parseInt(contactId));
+          draft[contactIndex] = { ...data };
+        });
 
-        setContacts(allContacts);
-        setFilteredContacts(allContacts);
+        setFilteredContacts(draft => {
+          const contactIndex = draft.findIndex(c => c.id === parseInt(contactId));
+          draft[contactIndex] = { ...data };
+        });
 
         setLoading(false);
         navigate("/contacts");

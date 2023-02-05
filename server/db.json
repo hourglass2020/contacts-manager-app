@@ -20,38 +20,20 @@
     },
     {
       "fullname": "پوریا اقدم پور",
-      "photo": "https://toplearn.com/img/user/teachers/268_2b05b90b-7a78-4e35-058f-39e6b8cf2ac1_%D8%AD%D8%B3%D9%86%20_%D8%AE%D8%B3%D8%B1%D9%88%D8%AC%D8%B1%D8%AF%DB%8C.jpeg",
+      "photo": "https://www.flaticon.com/free-icon/user_219986",
+      "mobile": "09351592329",
       "email": "pouria.fm15@gmail.com",
       "group": "1",
-      "mobile": "09351592329",
       "id": 5
     },
     {
-      "fullname": "pouriaAghdampour",
+      "fullname": "پوریا اقدم پور",
       "photo": "https://toplearn.com/img/user/teachers/268_2b05b90b-7a78-4e35-058f-39e6b8cf2ac1_%D8%AD%D8%B3%D9%86%20_%D8%AE%D8%B3%D8%B1%D9%88%D8%AC%D8%B1%D8%AF%DB%8C.jpeg",
-      "mobile": 9376206030,
-      "email": "pouria.fm16@gmail.com",
-      "job": "developer",
-      "group": "3",
-      "id": 6
-    },
-    {
-      "fullname": "pouria",
-      "photo": "https://toplearn.com/img/user/teachers/268_2b05b90b-7a78-4e35-058f-39e6b8cf2ac1_%D8%AD%D8%B3%D9%86%20_%D8%AE%D8%B3%D8%B1%D9%88%D8%AC%D8%B1%D8%AF%DB%8C.jpeg",
-      "mobile": 9352177192,
-      "email": "pouria.fm17@gmail.com",
-      "job": "developer",
-      "group": "1",
-      "id": 7
-    },
-    {
-      "fullname": "pouria",
-      "photo": "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png",
-      "mobile": 9376206030,
+      "mobile": "9352177192",
       "email": "pouria.aghdampour@gmail.com",
-      "job": "biomedical engineer",
-      "group": "4",
-      "id": 8
+      "job": "developer",
+      "group": "2",
+      "id": 6
     }
   ],
   "groups": [

@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
-
+import { useImmer } from "use-immer";
 import _ from "lodash";
+
+import { ToastContainer, toast } from "react-toastify";
 
 import {
   AddContact,
@@ -28,17 +30,13 @@ import {
   COMMENT,
 } from "./helpers/colors";
 
-import { contactSchema } from "./validations/contactValidation";
-
 import { ContactContext } from "./context/contactContext";
 
 const App = () => {
-  const [loading, setLoading] = useState(false);
-  const [contacts, setContacts] = useState([]);
-  const [filteredContacts, setFilteredContacts] = useState([]);
-  const [groups, setGroups] = useState([]);
-  const [contact, setContact] = useState({});
-  // const [errors, setErrors] = useState([]);
+  const [loading, setLoading] = useImmer(false);
+  const [contacts, setContacts] = useImmer([]);
+  const [filteredContacts, setFilteredContacts] = useImmer([]);
+  const [groups, setGroups] = useImmer([]);
 
   const navigate = useNavigate();
 
@@ -64,40 +62,32 @@ const App = () => {
     fetchData();
   }, []);
 
-  // const createContactForm = async (event) => {
-  // event.preventDefault();
+
   const createContactForm = async (values) => {
     try {
-      setLoading(prevLoading => !prevLoading);
-
-      // await contactSchema.validate(contact, { abortEarly: false });
+      setLoading(draft => !draft);
 
       const { status, data } = await createContact(values);
 
       if (status === 201) {
-        const allContacts = [...contacts, data];
+        toast.success("مخاطب با موفقیت ساخته شد.", {
+          icon: "🚀"
+        });
+        setContacts(draft => {
+          draft.push(data);
+        });
 
-        setFilteredContacts(allContacts);
-        setContacts(allContacts);
+        setFilteredContacts(draft => { draft.push(data) });
 
-        // setContact({});
-        // setErrors([]);
         setLoading(prevLoading => !prevLoading);
         navigate("/contacts");
       }
     } catch (err) {
       console.log(err.message);
-      // setErrors(err.inner);
       setLoading(prev => !prev);
     }
   };
 
-  const onContactChange = (event) => {
-    setContact({
-      ...contact,
-      [event.target.name]: event.target.value,
-    });
-  };
 
   const confirmDelete = (contactId, contactFullname) => {
     confirmAlert({
@@ -140,54 +130,46 @@ const App = () => {
   };
 
   const removeContact = async (contactId) => {
-    const allContacts = [...contacts];
+    const contactsBackup = [...contacts];
     try {
       setLoading(true);
 
-      const updatedContacts = contacts.filter(con => con.id !== contactId);
-      setContacts(updatedContacts);
-      setFilteredContacts(updatedContacts);
+      setContacts(draft => draft.filter(con => con.id !== contactId));
+      setFilteredContacts(draft => draft.filter(con => con.id !== contactId));
 
       const { status } = await deleteContact(contactId);
-
+      toast.error("مخاطب با موفقیت حذف شد.")
       if (status !== 200) {
-        setContacts(allContacts);
-        setFilteredContacts(allContacts);
+        setContacts(contactsBackup);
+        setFilteredContacts(contactsBackup);
       }
 
       setLoading(false);
 
     } catch (err) {
       console.log(err.message);
-      setContacts(allContacts);
-      setFilteredContacts(allContacts);
+      setContacts(contactsBackup);
+      setFilteredContacts(contactsBackup);
       setLoading(false);
     }
   };
 
-  // let filterTimeout;
   const contactSearch = _.debounce((query) => {
-    // clearTimeout(filterTimeout);
-
 
     if (!query)
       return setFilteredContacts([...contacts]);
 
-    // filterTimeout = setTimeout(() => {
-    setFilteredContacts(contacts.filter((contact) => {
+    setFilteredContacts(draft => draft.filter((contact) => {
       return contact.fullname
         .toLowerCase()
         .includes(query.toLowerCase());
     }));
-    // }, 1000)
 
   }, 1000);
 
   return (
     <ContactContext.Provider
       value={{
-        contact,
-        setContact,
         loading,
         setLoading,
         contacts,
@@ -195,14 +177,13 @@ const App = () => {
         filteredContacts,
         setFilteredContacts,
         groups,
-        // errors,
-        onContactChange,
         deleteContact: confirmDelete,
         createContact: createContactForm,
         contactSearch,
       }}
     >
       <div className="App">
+        <ToastContainer rtl={true} position="bottom-right" theme="colored" />
         <Navbar />
         <Routes>
           <Route path="/" element={<Navigate to="/contacts" />} />
