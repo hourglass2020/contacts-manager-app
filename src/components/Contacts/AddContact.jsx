@@ -1,4 +1,4 @@
-import { Formik } from "formik";
+import { Form, Formik, Field, ErrorMessage } from "formik";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
@@ -62,75 +62,56 @@ const AddContact = () => {
                     onSubmit={(values) => {
                       createContact(values);
                     }}>
-
-                    <form onSubmit={formik.handleSubmit}>
+                    <Form>
                       <div className="mb-2">
-                        <input
-                          id="fullname"
+                        <Field
+                          name="fullname"
                           type="text"
-                          // value={formik.values.fullname}
-                          // onChange={formik.handleChange}
-                          // onBlur={formik.handleBlur}
-                          {...formik.getFieldProps('fullname')}
                           className="form-control"
                           placeholder="نام و نام خانوادگی"
                         />
-                        {formik.touched.fullname && formik.errors.fullname ? (
-                          <p className="text-danger">{formik.errors.fullname}</p>
-                        ) : null}
+                        <ErrorMessage component="p" className="text-danger" name="fullname" />
                       </div>
                       <div className="mb-2">
-                        <input
-                          id="photo"
+                        <Field
+                          name="photo"
                           type="text"
-                          {...formik.getFieldProps('photo')}
                           className="form-control"
                           placeholder="آدرس تصویر"
                         />
-                        {formik.touched.photo && formik.errors.photo ? (
-                          <p className="text-danger">{formik.errors.photo}</p>
-                        ) : null}
+                        <ErrorMessage component="p" className="text-danger" name="photo" />
                       </div>
                       <div className="mb-2">
-                        <input
+                        <Field
                           type="number"
-                          id="mobile"
-                          {...formik.getFieldProps('mobile')}
+                          name="mobile"
                           className="form-control"
                           placeholder="شماره موبایل"
                         />
-                        {formik.touched.mobile && formik.errors.mobile ? (
-                          <p className="text-danger">{formik.errors.mobile}</p>
-                        ) : null}
+                        <ErrorMessage component="p" className="text-danger" name="mobile" />
                       </div>
                       <div className="mb-2">
-                        <input
-                          id="email"
+                        <Field
+                          name="email"
                           type="email"
-                          {...formik.getFieldProps('email')}
                           className="form-control"
                           placeholder="آدرس ایمیل"
                         />
-                        {formik.touched.email && formik.errors.email ? (
-                          <p className="text-danger">{formik.errors.email}</p>
-                        ) : null}
+                        <ErrorMessage component="p" className="text-danger" name="email" />
                       </div>
                       <div className="mb-2">
-                        <input
-                          id="job"
+                        <Field
+                          name="job"
                           type="text"
-                          {...formik.getFieldProps('job')}
                           className="form-control"
                           placeholder="شغل"
                         />
-                        {formik.touched.job && formik.errors.job ? (
-                          <p className="text-danger">{formik.errors.job}</p>
-                        ) : null}
+                        <ErrorMessage component="p" className="text-danger" name="job" />
                       </div>
                       <div className="mb-2">
-                        <select
-                          id="group"
-                          {...formik.getFieldProps('group')}
+                        <Field
+                          as="select"
+                          name="group"
                           className="form-control"
                         >
                           <option value="">انتخاب گروه</option>
@@ -140,10 +121,8 @@ const AddContact = () => {
                                 {group.name}
                               </option>
                             ))}
-                        </select>
-                        {formik.touched.group && formik.errors.group ? (
-                          <p className="text-danger">{formik.errors.group}</p>
-                        ) : null}
+                        </Field>
+                        <ErrorMessage component="p" className="text-danger" name="group" />
                       </div>
                       <div className="mx-2">
                         <input
@@ -160,7 +139,7 @@ const AddContact = () => {
                           انصراف
                         </Link>
                       </div>
-                    </form>
+                    </Form>
                   </Formik>
                 </div>
               </div>
