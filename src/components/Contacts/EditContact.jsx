@@ -8,8 +8,7 @@ import { Spinner } from "../";
 import { COMMENT, ORANGE, PURPLE } from "../../helpers/colors";
 import { ContactContext } from "./../../context/contactContext";
 import { contactSchema } from "../../validations/contactValidation";
-// import { toast } from "react-toastify";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 const EditContact = () => {
   const { contactId } = useParams();

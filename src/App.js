@@ -4,8 +4,7 @@ import { confirmAlert } from "react-confirm-alert";
 import { useImmer } from "use-immer";
 import _ from "lodash";
 
-// import { ToastContainer, toast } from "react-toastify";
-import toast, { Toaster } from "react-hot-toast";
+import { ToastContainer, toast } from "react-toastify";
 
 import {
   AddContact,
@@ -184,8 +183,7 @@ const App = () => {
       }}
     >
       <div className="App">
-        {/* <ToastContainer rtl={true} position="bottom-right" theme="colored" /> */}
-        <Toaster position="bottom-right" />
+        <ToastContainer rtl={true} position="bottom-right" theme="colored" />
         <Navbar />
         <Routes>
           <Route path="/" element={<Navigate to="/contacts" />} />
