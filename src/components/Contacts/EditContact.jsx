@@ -48,7 +48,7 @@ const EditContact = () => {
       const { data, status } = await updateContact(values, contactId);
 
       if (status === 200) {
-        toast.success("مخاطب با موفقیت ویرایش شد.")
+        toast.info("مخاطب با موفقیت ویرایش شد.")
 
         setContacts(draft => {
           const contactIndex = draft.findIndex(c => c.id === parseInt(contactId));
