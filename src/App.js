@@ -31,6 +31,8 @@ import {
 } from "./helpers/colors";
 
 import { ContactContext } from "./context/contactContext";
+import PortalTest from "./components/PortalTest";
+import MyForm from "./components/MyForm";
 
 const App = () => {
   const [loading, setLoading] = useImmer(false);
@@ -192,6 +194,8 @@ const App = () => {
           <Route path="/contacts/:contactId" element={<ViewContact />} />
           <Route path="/contacts/edit/:contactId" element={<EditContact />} />
         </Routes>
+        <PortalTest />
+        <MyForm />
       </div>
     </ContactContext.Provider>
   );

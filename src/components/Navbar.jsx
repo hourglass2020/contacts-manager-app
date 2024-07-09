@@ -3,14 +3,16 @@ import { useLocation } from "react-router-dom";
 import SearchContact from "./Contacts/SearchContact";
 
 import { BACKGROUND, PURPLE } from "../helpers/colors";
+import Colorfull from "../hoc/Colorfull";
 
 const Navbar = () => {
+
   const location = useLocation();
 
   return (
     <nav
       className="navbar navbar-dark navbar-expand-sm shadow-lg"
-      style={{ backgroundColor: BACKGROUND }}
+    // style={{ backgroundColor: BACKGROUND }}
     >
       <div className="container">
         <div className="row w-100">
@@ -32,4 +34,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Colorfull(Navbar);
